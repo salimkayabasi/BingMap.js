@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>BingMap.js</title>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script charset="UTF-8" type="text/javascript"
+            src="http://ecn.dev.virtualearth.net/mapcontrol/mapcontrol.ashx?v=7.0"></script>
+    <script type="text/javascript" src="BingMap.js"></script>
+    <link rel="stylesheet" href="http://twitter.github.com/bootstrap/assets/css/bootstrap.css"/>
+    <link rel="stylesheet" href="http://twitter.github.com/bootstrap/assets/css/bootstrap-responsive.css"/>
+    <link rel="stylesheet" type="text/css" href="examples.css"/>
+    <script type="text/javascript">
+        var bing;
+        $(document).ready(function () {
+            navigator.geolocation.getCurrentPosition(function (pos) {
+                bing = new BingMap({
+                    div:'#map',
+                    lat:pos.coords.latitude,
+                    lng:pos.coords.longitude,
+                    credentials:'AsbJzOLPMixjlXbPxYOS1sCi3LjXMhhnzZI9Bzla9I819DD88L1NxqQRpEXgKsIL',
+                    beautify:true,
+                    zoom:16
+                });
+                for (var i = 0; i < 10; i++) {
+                    bing.AddPushpin({
+                        lat:41,
+                        lng:(29.18 + (i * 0.1)),
+                        text:i,
+//                        click:function () {
+//                            bing.Center(this.target.getLocation().latitude, this.target.getLocation().longitude)
+//                            bing.RemovePushpin(this.target)
+//                        },
+                        infoBox:{title:'title' + i}
+                    });
+                }
+                bing.Center(41, 29.18);
+                bing.Zoom(10)
+            })
+        });
+    </script>
+</head>
+<body>
+<div id="header">
+    <h1>
+        <a href="http://minikod.github.com/BingMap">BingMap.js</a>
+    </h1>
+
+    <h2>BingMap API with less pain and more fun</h2>
+</div>
+<div>
+    <h3>Map events</h3>
+
+    <div class="row">
+        <div class="center">
+            <div id="map" style="position: relative; width: 900px; height: 400px">
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</div>
+</body>
+</html>

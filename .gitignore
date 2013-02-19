@@ -1,0 +1,6 @@
+node_modules/
+Makefile
+.monitor
+.git
+.svn
+.idea
